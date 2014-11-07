@@ -84,7 +84,7 @@ public class TicketMachine
         else {
             System.out.println("You must insert at least: " +
                 (price - balance) + " more cents.");
-
+;
         }
     }
     
@@ -109,4 +109,20 @@ public class TicketMachine
         balance = 0;
         return amountToRefund;
     }
+    
+    /**
+     * simula dejar la maquina vacia y devuelve la cantidad que habia 
+     */
+    public int getEmptyMachine()
+    {
+        int emptyMachine = total;
+        total = 0;
+        return emptyMachine;
+  
+    }
+    
+    /**
+     * 
+     */
+   
 }
