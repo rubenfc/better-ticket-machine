@@ -26,6 +26,7 @@ public class TicketMachine
         price = cost;
         balance = 0;
         total = 0;
+
     }
 
     /**
@@ -84,7 +85,6 @@ public class TicketMachine
         else {
             System.out.println("You must insert at least: " +
                 (price - balance) + " more cents.");
-;
         }
     }
     
@@ -120,9 +120,33 @@ public class TicketMachine
         return emptyMachine;
   
     }
-    
     /**
-     * 
+     * buy a ticket with a 10 percent of discont 
      */
-   
+    public void printTicketWithDiscont()
+    {
+        double priceWithDiscount = (price * 0.9);
+        if (balance >= priceWithDiscount)
+        {
+         // Simulate the printing of a ticket.
+            System.out.println("##################");
+            System.out.println("# The BlueJ Line");
+            System.out.println("# Ticket");
+            System.out.println("# " + priceWithDiscount + " cents.");
+            System.out.println("##################");
+            System.out.println();
+
+            // Update the total collected with the price.
+            total+= priceWithDiscount;
+            // Reduce the balance by the prince.
+            balance-= priceWithDiscount;
+        }
+        else
+        {
+        System.out.println("You must insert at least: " +
+                (price - balance) + " more cents.");
+        }
+    }
+    
+ 
 }
