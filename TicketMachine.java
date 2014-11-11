@@ -17,15 +17,22 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
-
+    //the price with discount
+    private int priceDiscount;
+    //the discont
+    private boolean discount;
+    
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost)
+    public TicketMachine(int cost, int percentDiscount, boolean whithDiscount)
     {
         price = cost;
+        priceDiscount = price - ( price * percentDiscount / 100);
         balance = 0;
         total = 0;
+        discount = whithDiscount;
+        
 
     }
 
@@ -120,31 +127,39 @@ public class TicketMachine
         return emptyMachine;
   
     }
+    
     /**
-     * buy a ticket with a 10 percent of discont 
+     * buy a ticket with discount
      */
-    public void printTicketWithDiscont()
+    
+    
+    public void printTicketDiscount()
     {
-        double priceWithDiscount = (price * 0.9);
-        if (balance >= priceWithDiscount)
+        if (discount == false)
         {
          // Simulate the printing of a ticket.
+            System.out.println("esta maquina no admite tickets con descuento");
+           
+        }
+        else if (balance >= priceDiscount)
+        {
+        // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
             System.out.println("# Ticket");
-            System.out.println("# " + priceWithDiscount + " cents.");
+            System.out.println("# " + priceDiscount + " cents.");
             System.out.println("##################");
             System.out.println();
 
             // Update the total collected with the price.
-            total+= priceWithDiscount;
+            total = total + priceDiscount;
             // Reduce the balance by the prince.
-            balance-= priceWithDiscount;
+            balance = balance - priceDiscount;
         }
-        else
+        else 
         {
-        System.out.println("You must insert at least: " +
-                (price - balance) + " more cents.");
+         System.out.println("You must insert at least: " +
+                (priceDiscount - balance) + " more cents.");
         }
     }
     
